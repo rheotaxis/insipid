@@ -156,11 +156,11 @@ CREATE TABLE IF NOT EXISTS $tbl_authentication (
 
 CREATE TABLE IF NOT EXISTS $tbl_bookmarks (
 	id INT AUTO_INCREMENT NOT NULL,
-	url TEXT NOT NULL DEFAULT '',
+	url TEXT NOT NULL,
 	md5 CHAR(32) NOT NULL DEFAULT '' UNIQUE,
 	date INT NOT NULL DEFAULT 0,
 	title VARCHAR(255) NOT NULL DEFAULT '',
-	description TEXT NOT NULL DEFAULT '',
+	description TEXT NOT NULL,
 	access_level INT NOT NULL DEFAULT 0,
 	PRIMARY KEY(id)
 );
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS $tbl_options (
 
 CREATE TABLE IF NOT EXISTS $tbl_pagecache (
         md5 CHAR(32) NOT NULL DEFAULT '',
-        url TEXT NOT NULL DEFAULT '',
+        url TEXT NOT NULL,
         content_type VARCHAR(50),
         content_length INT NOT NULL DEFAULT 0,
         content LONGBLOB,

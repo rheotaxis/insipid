@@ -33,10 +33,10 @@ if(!-e "insipid-config.cgi") {
 
 eval {
 	push(@INC, "lib");
-	#push(@INC, "cspanm");
 	require Insipid::Main;
 	Insipid::Main::main();
-};
+	# show_env("Insipid","environmental variables");
+}; 
 
 if($@) {
 	my $errstr = $@;	
@@ -92,5 +92,26 @@ sub show_error {
 	}
 
 	print '</body></html>';
+	exit;
+}
+
+sub show_env {
+	my ($subject, $body) = (@_);
+	print "Content-Type: text/html\r\n\r\n";
+	print "<html><head><title>Insipid CGI Testing</title></head>";
+	print "<body>";
+	print "<h2>$subject</h2>";
+	print "<p><font size=\"+1\"></font></p>";
+	print "<p><font size=\"+1\">$body";
+	print "</font></p>";
+	print scalar localtime;
+	print "<br>";
+	
+
+	foreach my $key (keys %ENV) {
+			print "$key --> $ENV{$key}<br>";
+		}
+	
+	print "</body></html>";
 	exit;
 }
